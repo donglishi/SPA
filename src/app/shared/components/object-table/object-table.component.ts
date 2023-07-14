@@ -1,12 +1,22 @@
-import {HttpClient} from '@angular/common/http';
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule, SortDirection} from '@angular/material/sort';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {MatTableModule} from '@angular/material/table';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {NgIf, DatePipe} from '@angular/common';
+import { Component, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgIf, DatePipe } from '@angular/common';
+
+export interface ObjectColumn {
+  id: string;
+  name: string;
+  field: string;
+}
+
+export interface ObjectListResult {
+  items: any[];
+  total_count: number;
+}
 
 @Component({
   selector: 'app-object-table',
@@ -14,40 +24,41 @@ import {NgIf, DatePipe} from '@angular/common';
   styleUrls: ['./object-table.component.css'],
 })
 export class ObjectTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-  displayedColumns2 = [
-    {
-      id: 'created',
-      name: 'Created',
-      field: 'created'
-    },
-    {
-      id: 'state',
-      name: 'State',
-      field: 'state'
-    },
-    {
-      id: 'number',
-      name: '#',
-      field: 'number'
-    },
-    {
-      id: 'title',
-      name: 'Title',
-      field: 'title'
-    }
-  ];
 
-  exampleDatabase: ExampleHttpDatabase | null;
-  data: GithubIssue[] = [];
+  @Input()
+  get columns(): ObjectColumn[] { return this.tableColumns; }
+  set columns(columns: ObjectColumn[]) {
+    this.tableColumns = columns;
+    this.displayedTableColumns = this.tableColumns.map(r => r.id);
+  }
+
+  @Input() sortColumn: string;
+  
+  @Input()
+  get columnDirection(): string { return this._columnDirection; }
+  set columnDirection(columnDirection: string) {
+    this._columnDirection = columnDirection;
+    this.sortColumnDirection = this._columnDirection as SortDirection;
+  }
+
+  @Input() dataSource: (sort: string, direction: string, page: number) => Observable<ObjectListResult>;
+
+  // binding data
+  tableColumns: ObjectColumn[];
+  displayedTableColumns: string[];
+  sortColumnDirection: SortDirection;
+  data: any[] = [];
+
+  // private
+  _columnDirection: string;
+
   resultsLength = 0;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor() { }
 
   ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort?.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -56,7 +67,7 @@ export class ObjectTableComponent implements AfterViewInit {
       .pipe(
         startWith({}),
         switchMap(() => {
-          return this.exampleDatabase!.getRepoIssues(
+          return this.dataSource(
             this.sort.active,
             this.sort.direction,
             this.paginator.pageIndex,
@@ -77,31 +88,5 @@ export class ObjectTableComponent implements AfterViewInit {
         }),
       )
       .subscribe(data => (this.data = data));
-  }
-}
-
-export interface GithubApi {
-  items: GithubIssue[];
-  total_count: number;
-}
-
-export interface GithubIssue {
-  created_at: string;
-  number: string;
-  state: string;
-  title: string;
-}
-
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDatabase {
-  constructor(private _httpClient: HttpClient) {}
-
-  getRepoIssues(sort: string, order: SortDirection, page: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl = `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${
-      page + 1
-    }`;
-
-    return this._httpClient.get<GithubApi>(requestUrl);
   }
 }
