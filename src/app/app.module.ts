@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { SpaComponent } from './core/components/spa/spa.component';
 
 @NgModule({
   declarations: [
-    AppComponent
   ],
   imports: [
     HttpClientModule,
@@ -16,6 +15,6 @@ import { CoreModule } from './core/core.module';
     CoreModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [SpaComponent]
 })
 export class AppModule { }
