@@ -1,11 +1,8 @@
 import { Component, ViewChild, AfterViewInit, Input } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, SortDirection } from '@angular/material/sort';
 import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { MatTableModule } from '@angular/material/table';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { NgIf, DatePipe } from '@angular/common';
 
 export interface ObjectColumn {
   id: string;
@@ -33,7 +30,7 @@ export class ObjectTableComponent implements AfterViewInit {
   }
 
   @Input() sortColumn: string;
-  
+
   @Input()
   get columnDirection(): string { return this._columnDirection; }
   set columnDirection(columnDirection: string) {
