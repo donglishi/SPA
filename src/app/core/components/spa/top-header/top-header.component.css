@@ -3,8 +3,9 @@ nav {
     flex-wrap: wrap;
     align-items: center;
     padding: 8px 16px;
+    background-color: var(--spa-header-color);
 }
 
 .flex-spacer {
-    flex-grow: 1;
+    flex: 1;
 }

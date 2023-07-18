@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+
+    /* colors */
+    --spa-header-color: #e35205;
+    --spa-footer-color: #01426a;
+}

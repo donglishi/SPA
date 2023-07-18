@@ -1,3 +1,4 @@
 footer {
     padding: 12px;
+    background-color: var(--spa-footer-color);
 }
