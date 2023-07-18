@@ -6,4 +6,7 @@
 
 .container {
     flex-grow: 1;
+    max-height: calc(100vh - 78px);
+    flex-direction: column;
+    display: flex;
 }
