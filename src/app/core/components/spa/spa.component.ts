@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./spa.component.css']
 })
 export class SpaComponent {
-
+  opened: boolean = true;
 }

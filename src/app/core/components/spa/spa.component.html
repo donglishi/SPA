@@ -1,5 +1,11 @@
 <app-top-header></app-top-header>
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        Sidenav content
+        <button (click)="sidenav.toggle()">toggle</button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 <app-footer></app-footer>

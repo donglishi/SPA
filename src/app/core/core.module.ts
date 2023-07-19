@@ -4,6 +4,7 @@ import { TopHeaderComponent } from './components/spa/top-header/top-header.compo
 import { FooterComponent } from './components/spa/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpaComponent } from './components/spa/spa.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 /*
 The CoreModule takes on the role of the app root module. The common denominator between
@@ -25,7 +26,8 @@ To prevent re-importing the module elsewhere, we should add a module-import guar
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSidenavModule
   ],
   exports: [
     TopHeaderComponent,

@@ -4,8 +4,16 @@
     height: 100%;
 }
 
-.container {
+mat-sidenav {
+    width: 300px;
+}
+
+mat-sidenav-container {
     flex-grow: 1;
+    max-height: calc(100vh - 78px);
+}
+
+mat-sidenav-content {
     max-height: calc(100vh - 78px);
     flex-direction: column;
     display: flex;
