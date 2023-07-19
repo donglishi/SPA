@@ -1,8 +1,41 @@
 <app-top-header></app-top-header>
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-        Sidenav content
-        <button (click)="sidenav.toggle()">toggle</button>
+        <h3>Single line lists</h3>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Personal data </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item>Pepper</mat-list-item>
+                    <mat-list-item>Salt</mat-list-item>
+                    <mat-list-item>Paprika</mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Destination </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item>Pepper</mat-list-item>
+                    <mat-list-item>Salt</mat-list-item>
+                    <mat-list-item>Paprika</mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Day of the trip </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item>Pepper</mat-list-item>
+                    <mat-list-item>Salt</mat-list-item>
+                    <mat-list-item>Paprika</mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <!-- <button (click)="sidenav.toggle()">toggle</button> -->
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
