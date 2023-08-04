@@ -7,6 +7,7 @@ import { SpaComponent } from './components/spa/spa.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 /*
 The CoreModule takes on the role of the app root module. The common denominator between
@@ -31,7 +32,8 @@ To prevent re-importing the module elsewhere, we should add a module-import guar
     AppRoutingModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule
   ],
   exports: [
     TopHeaderComponent,
