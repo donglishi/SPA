@@ -5,7 +5,7 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersComponent } from './customers.component';
 
 /*
-This module is created by command: ng generate module features/customers --route customers --module app.module
+This module is created by command: ng generate module features/customers --route customers --module ./core/app-routing.module
 */
 
 @NgModule({

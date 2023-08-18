@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+textarea {
+    flex: 1;
+}
