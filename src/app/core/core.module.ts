@@ -8,6 +8,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { UnicodePipe } from './pipes/unicode.pipe';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 /*
 The CoreModule takes on the role of the app root module. The common denominator between
@@ -25,17 +28,20 @@ To prevent re-importing the module elsewhere, we should add a module-import guar
   declarations: [
     TopHeaderComponent,
     FooterComponent,
-    SpaComponent
+    SpaComponent,
+    UnicodePipe
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    FormsModule,
     MatSidenavModule,
     MatExpansionModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   exports: [
+    UnicodePipe,
     TopHeaderComponent,
     FooterComponent,
     SpaComponent

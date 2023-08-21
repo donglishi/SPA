@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SpaComponent } from './core/components/spa/spa.component';
+import { AppRoutingModule } from './core/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { SpaComponent } from './core/components/spa/spa.component';
     HttpClientModule,
     BrowserModule,
     NoopAnimationsModule,
-    CoreModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [SpaComponent]
